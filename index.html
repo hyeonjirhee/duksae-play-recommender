@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>놀이 추천 서비스</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>덕새가 놀이를 추천해드려요!</h1>
+    <div class="image-container">
+      <img src="images/duksae.png" alt="덕새 이미지" class="duksae-image" />
+    </div>
+
+    <form id="aiForm">
+      <label for="mood">오늘 기분을 한 단어로 표현해주세요:</label>
+      <input type="text" id="mood" name="mood" required />
+
+      <label for="partner">누구와 놀고 싶나요? (예: 혼자, 친구, 가족, 연인 등)</label>
+      <input type="text" id="partner" name="partner" required />
+
+      <button type="submit">AI 놀이 추천 받기</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById("aiForm");
+    const resultDiv = document.getElementById("result");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const mood = document.getElementById("mood").value;
+      const partner = document.getElementById("partner").value;
+
+      resultDiv.textContent = "덕새가 재밌는 놀이를 고민 중이에요... 🎈";
+
+      try {
+        const response = await fetch("https://assignment2-silk-psi.vercel.app/api/duksungAI", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ mood, partner }),
+        });
+
+        const data = await response.json();
+        resultDiv.textContent = data.answer || "추천을 불러오지 못했습니다.";
+      } catch (error) {
+        resultDiv.textContent = "오류가 발생했습니다. 다시 시도해주세요.";
+      }
+    });
+  </script>
+</body>
+</html>
