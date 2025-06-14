@@ -1,7 +1,9 @@
+인터넷 기초[04]과제2 - 나만의 인공지능 서비스 백엔드
+
 #개요
 - 서비스 명: 덕새의 놀이 추천 서비스
 - 서비스 설명: 이 웹페이지는 사용자의 기분과 놀이 상대에 따라 인공지능이 오늘 무엇을 하며 놀면 좋을지 추천해주는 서비스입니다. 간단한 입력만으로 즐거운 활동을 제안받아보세요!
-- 서비스 접속 주소: https://hyeonjirhee.github.io/duksae-play-recommender/
+- 서비스 접속 주소: https://hyeonjirhee.github.io/duksae-play-recommender
 
 #서비스 구성 요소(1) - Gemini API
 - 기분과 놀이에 따라 놀이를 추천은 구글의 LMM 모델인 Gemini의 API를 활용해 생성한다.
